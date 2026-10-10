@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <title>Document</title>
+    <style>
+       * {
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
+           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+       }
+
+       body {
+           background-color: #000000;
+           color: #ffffff;
+           min-height: 100vh;
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           justify-content: center;
+           padding: 32px 16px;
+       }
+
+       .container {
+           width: min(100%, 560px);
+           background-color: #1c1c1c;
+           border-radius: 32px;
+           padding: 36px 28px;
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           gap: 18px;
+       }
+
+       header {
+           text-align: center;
+       }
+
+       header i {
+           font-size: 70px;
+           margin-bottom: 10px;
+           display: block;
+       }
+
+       header h1 {
+           font-size: clamp(2rem, 4vw, 2.8rem);
+           line-height: 1.2;
+           font-weight: 700;
+       }
+
+       .auth-body {
+           width: 100%;
+       }
+
+       .methods-container {
+           border: 2px solid #ffffff;
+           background-color: transparent;
+           padding: 15px 20px;
+           width: 100%;
+           margin: 10px 0;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           border-radius: 50px;
+           cursor: pointer;
+           transition: background-color 0.2s ease, transform 0.2s ease;
+           font-size: 16px;
+           color: #ffffff;
+       }
+
+       .methods-container:hover {
+           background-color: rgba(255, 255, 255, 0.08);
+           transform: translateY(-1px);
+       }
+
+       .methods-container i {
+           font-size: 20px;
+           margin-right: 10px;
+       }
+
+       hr {
+           border: 1px solid rgba(255, 255, 255, 0.4);
+           width: 100%;
+           margin: 22px 0;
+       }
+
+       form {
+           display: flex;
+           flex-direction: column;
+           gap: 12px;
+           width: 100%;
+       }
+
+       label {
+           font-size: 18px;
+           color: #ffffff;
+           font-weight: 600;
+       }
+
+       input {
+           width: 100%;
+           height: 48px;
+           border-radius: 50px;
+           background-color: #1c1c1c;
+           border: 2px solid rgba(255, 255, 255, 0.7);
+           padding: 0 18px;
+           color: #ffffff;
+           font-size: 16px;
+       }
+
+       input::placeholder {
+           color: rgba(255, 255, 255, 0.5);
+       }
+
+       .submit {
+           width: 100%;
+           background-color: #1db954;
+           color: #000000;
+           font-size: 20px;
+           font-weight: 700;
+           padding: 12px 20px;
+           border: none;
+           border-radius: 25px;
+           cursor: pointer;
+           transition: background-color 0.2s ease;
+           margin-top: 8px;
+       }
+
+       .submit:hover {
+           background-color: #1a7e39;
+       }
+
+       .small-link {
+           display: inline-block;
+           margin-top: 12px;
+           color: #1db954;
+           text-decoration: none;
+           font-size: 15px;
+       }
+
+       .signup-text,
+       .login-text {
+           margin-top: 18px;
+           text-align: center;
+           color: #ffffff;
+           font-size: 15px;
+       }
+
+       .signup-text a,
+       .login-text a,
+       .auth-footer a {
+           color: #1db954;
+           text-decoration: none;
+       }
+
+       footer {
+           width: 100%;
+           max-width: 560px;
+           text-align: center;
+           margin-top: 18px;
+           color: #ffffff;
+           font-size: 14px;
+           line-height: 1.6;
+           opacity: 0.9;
+       }
+
+       @media (max-width: 768px) {
+           .container {
+               padding: 28px 20px;
+           }
+
+           .methods-container {
+               font-size: 14px;
+               padding: 12px 16px;
+           }
+       }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <i class="ri-disc-line"></i>
+            <h1>Sign up to <br> start listening</h1>
+        </header>
+
+        <div class="auth-body">
+            <div class="methods-container">
+                <i class="ri-google-fill"></i>
+                Continue with Google
+            </div>
+            <div class="methods-container">
+                <i class="ri-apple-fill"></i>
+                Continue with Apple
+            </div>
+            <div class="methods-container">
+                <i class="ri-facebook-fill"></i>
+                Continue with Facebook
+            </div>
+
+            <hr>
+
+            <form id="signupForm">
+                <label for="email">Email address:</label>
+                <input type="email" id="email" placeholder="name@domain.com" required>
+                <a href="" class="small-link">Use phone number instead</a>
+                <input type="submit" value="Next" id="submit" class="submit">
+            </form>
+        </div>
+    </div>
+
+    <footer class="auth-footer">
+        <p class="login-text">Already have an account? <a href="/index.html">Log in here</a></p>
+        <p class="login-text">This site is protected by reCAPTCHA and the Google <a href="">Privacy Policy</a> and <a href="">Terms of Service</a> apply.</p>
+    </footer>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const emailInput = document.getElementById('email');
+            const email = emailInput.value;
+
+            // Simple email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+            } else {
+                alert('Form submitted successfully!');
+                window.location.href='musicplayer.html'
+            }
+        });
+    </script>
+</body>
+</html>
